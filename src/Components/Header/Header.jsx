@@ -1,6 +1,6 @@
 // src/Components/Header/Header.jsx
 import React, { useState } from 'react';
-import { HeaderContainer, SearchBar, NavToggle } from './Header.styles';
+import { HeaderContainer, SearchBar,Search, NavToggle } from './Header.styles';
 import Navigation from '../Navigation/Navigation';
 import { FaSearch } from "react-icons/fa";
 import { IoIosMenu } from "react-icons/io";
@@ -40,6 +40,8 @@ const Header = () => {
       )}
       <SearchBar>
 <IoIosMenu />
+        <Search />
+
           <FaSearch />
       </SearchBar>
     </HeaderContainer>

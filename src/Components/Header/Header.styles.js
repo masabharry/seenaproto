@@ -54,3 +54,18 @@ export const SearchBar = styled.div`
   background-color: #fff;
 
 `
+
+export const Search = styled.input`
+  width:300px;
+  height:45px;
+  border: none;
+  padding: 0px 5px;
+  background-color: transparent;
+    border: 0px solid white;
+    outline: none;
+  &:hover{
+   background-color: transparent;
+    border: 0px solid white;
+    outline: none;
+  }
+`
