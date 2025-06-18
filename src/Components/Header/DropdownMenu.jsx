@@ -1,6 +1,11 @@
 // components/Header/DropdownMenu.jsx
 import React from 'react';
-import { DropdownContainer, DropdownItem, DropdownTitle, DropdownSection } from './DropdownMenu';
+import {
+  DropdownContainer,
+  DropdownItem,
+  DropdownTitle,
+  DropdownSection
+} from './DropdownMenu.styles'; // Ye sirf styled-components hain
 
 const dropdownContent = {
   Product: {
@@ -37,6 +42,7 @@ const dropdownContent = {
   Actors: {
     sections: [
       {
+        title: null,
         items: [
           "Student",
           "Teacher",
@@ -54,16 +60,22 @@ const dropdownContent = {
 const DropdownMenu = ({ type, closeDropdown }) => {
   const content = dropdownContent[type];
 
+  if (!content) return null;
+
   return (
     <DropdownContainer onClick={(e) => e.stopPropagation()}>
       {content.sections.map((section, index) => (
         <DropdownSection key={index}>
           {section.title && <DropdownTitle>{section.title}</DropdownTitle>}
-          {section.items.map((item) => (
-            <DropdownItem key={item} href="#" onClick={closeDropdown}>
-              {item}
-            </DropdownItem>
-          ))}
+          <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+            {section.items.map((item, i) => (
+              <li key={`${item}-${i}`}>
+                <DropdownItem href="#" onClick={closeDropdown}>
+                  {item}
+                </DropdownItem>
+              </li>
+            ))}
+          </ul>
         </DropdownSection>
       ))}
     </DropdownContainer>

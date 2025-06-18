@@ -34,11 +34,10 @@ export const NavItem = styled.li`
 
 export const NavLink = styled.a`
   text-decoration: none;
-  color: #2c3e50;
+  color: #AC3502;
   font-weight: 500;
   padding: 0.5rem 0;
   transition: color 0.3s;
-
   &:hover {
     color: #3498db;
   }
@@ -47,7 +46,7 @@ export const NavLink = styled.a`
 export const DropdownTrigger = styled.button`
   background: none;
   border: none;
-  color: #2c3e50;
+  color: #AC3502;
   font-weight: 500;
   font-size: 1rem;
   padding: 0.5rem 0;
