@@ -23,7 +23,7 @@ const Header = () => {
 
   return (
     <HeaderContainer>
-      <Logo>SeenaDSavior</Logo>
+     
       <NavToggle onClick={toggleMenu}>☰</NavToggle>
       <Navigation 
         isMenuOpen={isMenuOpen} 
@@ -36,6 +36,7 @@ const Header = () => {
           closeDropdown={() => setActiveDropdown(null)} 
         />
       )}
+      
     </HeaderContainer>
   );
 };
