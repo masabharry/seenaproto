@@ -1,7 +1,9 @@
 // src/Components/Header/Header.jsx
 import React, { useState } from 'react';
-import { HeaderContainer, Logo, NavToggle } from './Header.styles';
+import { HeaderContainer, SearchBar, NavToggle } from './Header.styles';
 import Navigation from '../Navigation/Navigation';
+import { FaSearch } from "react-icons/fa";
+import { IoIosMenu } from "react-icons/io";
 import { 
   DropdownContainer,  // Import directly as DropdownContainer
   DropdownItem,
@@ -36,7 +38,10 @@ const Header = () => {
           closeDropdown={() => setActiveDropdown(null)} 
         />
       )}
-      
+      <SearchBar>
+<IoIosMenu />
+          <FaSearch />
+      </SearchBar>
     </HeaderContainer>
   );
 };

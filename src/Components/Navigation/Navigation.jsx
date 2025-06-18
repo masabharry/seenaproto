@@ -10,8 +10,10 @@ const navItems = [
   { name: 'SDS Packages', dropdown: false },
 ];
 
+
 const Navigation = ({ isMenuOpen, activeDropdown, handleDropdown }) => {
   return (
+    
     <NavList isMenuOpen={isMenuOpen}>
       {navItems.map((item) => (
         <NavItem key={item.name}>

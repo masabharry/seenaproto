@@ -5,8 +5,9 @@ export const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background-color: #fff;
+  padding: 10px 20px;
+  height: 80px;
+  background-color: #E0D7D7;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: relative;
   z-index: 1000;
@@ -28,6 +29,7 @@ export const NavToggle = styled.button`
   font-size: 1.5rem;
   cursor: pointer;
   display: none;
+  color: #ac3502;
 
   @media (max-width: 768px) {
     display: block;
@@ -39,3 +41,16 @@ const InnerDiv = styled.div`
   align-items: center;
   gap: 10px;
 `;
+
+export const SearchBar = styled.div`
+  width:300px;
+  height:45px;
+  border:#938E98;
+   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 18px;
+  border-radius:70px;
+  background-color: #fff;
+
+`
