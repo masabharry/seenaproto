@@ -1,38 +1,51 @@
 import styled from 'styled-components';
 
+export const BackgroundWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+
+  canvas {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    z-index: 0;
+  }
+`;
+
 export const HeroContainer = styled.section`
   position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   padding: 4rem 2rem;
-  background: #090909;
-  min-height: 80vh;
-  overflow: hidden;
-
-  @media (max-width: 768px) {
-    padding: 2rem 1rem;
-    min-height: 50vh;
-  }
-`;
-
-export const ContentWrapper = styled.div`
-  position: relative;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  min-height: 100vh;
+  background: #090909; 
 `;
 
 export const HeroText = styled.div`
   margin-bottom: 2rem;
 `;
 
+export const HeroContent = styled.div`
+  position: relative;
+  z-index: 10; // Must be higher than cloth background
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+`;
+
 export const HeroSubtitle = styled.h2`
   font-size: 1.5rem;
-  color: #3498db;
+  color: #8a3ffc; // Singularity purple
   margin: 0 0 1rem 0;
   font-weight: 500;
   text-shadow: 0 2px 4px rgba(0,0,0,0.3);
@@ -60,21 +73,21 @@ export const HeroTitle = styled.h1`
 
 export const CtaButton = styled.button`
   padding: 0.8rem 2rem;
-  margin: 0 1rem;
-  border: 2px solid #3498db;
+  margin: 1rem 1rem;
+  border: 2px solid #8a3ffc;
   border-radius: 50px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  background-color: ${({ primary }) => (primary ? '#3498db' : 'transparent')};
-  color: ${({ primary }) => (primary ? '#fff' : '#3498db')};
+  background-color: ${({ primary }) => (primary ? '#8a3ffc' : 'transparent')};
+  color: ${({ primary }) => (primary ? '#fff' : '#8a3ffc')};
   position: relative;
   z-index: 10;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 
   &:hover {
-    background-color: ${({ primary }) => (primary ? '#2980b9' : '#3498db')};
+    background-color: ${({ primary }) => (primary ? '#6e2dd9' : '#8a3ffc')};
     color: #fff;
     transform: translateY(-2px);
     box-shadow: 0 6px 8px rgba(0,0,0,0.15);
@@ -86,12 +99,3 @@ export const CtaButton = styled.button`
     font-size: 0.9rem;
   }
 `;
-
-export const HeroWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-`;
-
-

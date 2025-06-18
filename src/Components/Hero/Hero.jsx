@@ -1,29 +1,28 @@
 import React from 'react';
-import {
-  HeroContainer,
-  HeroTitle,
-  HeroSubtitle,
-  HeroText,
-  CtaButton,
-  HeroWrapper,
+import { 
+  HeroContainer, 
+  HeroContent, 
+  HeroTitle, 
+  HeroSubtitle, 
+  CtaButton 
 } from './Hero.styles';
-import AnimatedBackground from '../AnimatedBackground';
+import { ClothBackground } from '../ClothBackground';
 
 const Hero = () => {
   return (
-    <HeroWrapper>
-      <AnimatedBackground />
-      <HeroContainer>
-        <HeroText>
+    <HeroContainer>
+      <ClothBackground />
+      <HeroContent>
+        <div>
           <HeroSubtitle>AI-Powered</HeroSubtitle>
           <HeroTitle>Simplicity for Smarter Education</HeroTitle>
-        </HeroText>
+        </div>
         <div>
           <CtaButton primary>Explore us</CtaButton>
           <CtaButton>Get Started</CtaButton>
         </div>
-      </HeroContainer>
-    </HeroWrapper>
+      </HeroContent>
+    </HeroContainer>
   );
 };
 
