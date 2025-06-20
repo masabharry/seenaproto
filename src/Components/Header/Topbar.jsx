@@ -4,7 +4,8 @@ import { HeaderContainer, InnerDiv, Logo, LoginButton } from "./Topbar.styles";
 import { useAnimation, useScroll, motion } from "framer-motion";
 import { useEffect } from "react";
 import mainlogo from "../../Assets/a1.png"
-
+import loginLink from "../Login/Login"
+import { Link } from "react-router-dom";
 
 const Topbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -50,7 +51,10 @@ const Topbar = () => {
         <Logo>SeenaDSavior</Logo>
       </InnerDiv>
       <InnerDiv>
-           <LoginButton>Login/Register</LoginButton>
+        <Link to={"/login"}>
+          <LoginButton >Login/Register</LoginButton>
+        </Link>
+           
       
       </InnerDiv>
     </HeaderContainer>

@@ -7,6 +7,7 @@ import AboutPage from './Pages/AboutPage';
 import ActorsPage from './Pages/ActorsPage';
 import CommunityPage from './Pages/CommunityPage';
 import { GlobalStyle } from './App.styles';
+import Login from './Components/Login/Login';
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
       <GlobalStyle />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<Login />} />
         {/* <Route path="/product" element={<ProductPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/actors" element={<ActorsPage />} />
