@@ -179,7 +179,7 @@ const formVariants = {
                 >
                   <p>
                     Already have an account?{" "}
-                    <span onClick={toggleForm} style={{ color: "#7F00FF" }}>
+                    <span onClick={toggleForm} style={{ color: "#7F00FF", }}>
                       Login
                     </span>
                   </p>
