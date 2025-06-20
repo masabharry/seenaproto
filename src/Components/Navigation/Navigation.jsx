@@ -5,7 +5,7 @@ import { NavList, NavItem, NavLink, DropdownTrigger } from './Navigation.styles'
 const navItems = [
   { name: 'Product', dropdown: true },
   { name: 'About', dropdown: true },
-  { name: 'Actors', dropdown: false },
+  { name: 'Actors', dropdown: true },
   { name: 'Community & Resources', dropdown: false },
   { name: 'SDS Packages', dropdown: false },
 ];
@@ -21,6 +21,7 @@ const Navigation = ({ isMenuOpen, activeDropdown, handleDropdown }) => {
             <DropdownTrigger 
               onClick={() => handleDropdown(item.name)}
               isActive={activeDropdown === item.name}
+              data-trigger={item.name} 
             >
               {item.name}
             </DropdownTrigger>

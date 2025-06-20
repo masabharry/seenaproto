@@ -14,8 +14,16 @@ export const NavList = styled.ul`
     top: 100%;
     left: 0;
     right: 0;
-    background-color: #fff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 60%;
+    background: transparent linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  backdrop-filter: blur(18.6px);
+  -webkit-backdrop-filter: blur(18.6px);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     display: ${({ isMenuOpen }) => (isMenuOpen ? 'flex' : 'none')};
     padding: 1rem 0;
   }
@@ -34,19 +42,21 @@ export const NavItem = styled.li`
 
 export const NavLink = styled.a`
   text-decoration: none;
-  color: #AC3502;
+  color: #7F00FF;
+  font-size: 18px;
   font-weight: 500;
   padding: 0.5rem 0;
   transition: color 0.3s;
   &:hover {
-    color: #3498db;
+    color: #fff;
   }
 `;
 
 export const DropdownTrigger = styled.button`
   background: none;
   border: none;
-  color: #AC3502;
+  font-size: 18px;
+  color: #7F00FF;
   font-weight: 500;
   font-size: 1rem;
   padding: 0.5rem 0;
@@ -55,12 +65,13 @@ export const DropdownTrigger = styled.button`
   position: relative;
 
   &:hover {
-    color: #3498db;
+  
+    color:  #fff;
   }
 
   &::after {
     content: '▼';
-    font-size: 0.6rem;
+    font-size: 15px;
     margin-left: 0.5rem;
     display: inline-block;
     transform: ${({ isActive }) => (isActive ? 'rotate(180deg)' : 'rotate(0)')};

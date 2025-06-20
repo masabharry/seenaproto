@@ -12,7 +12,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     line-height: 1.6;
     color: #333;
-    background-color: #f9f9f9;
+    background-color: #090909;
   }
 
   a {
@@ -32,7 +32,9 @@ export const GlobalStyle = createGlobalStyle`
 export const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
+  z-index: 0;
   min-height: 100vh;
+  padding-top: 140px; /* Adjust based on header height */
 `;
 
 export const PageContent = styled.main`

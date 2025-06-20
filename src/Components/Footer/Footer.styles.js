@@ -2,10 +2,13 @@
 import styled from 'styled-components';
 
 export const FooterContainer = styled.footer`
-  background-color: #2c3e50;
+  background-color: transparent;
   color: #ecf0f1;
   padding: 2rem 0;
   margin-top: auto;
+  z-index: 10;
+  border-top: 1px solid #7F00FF;
+  border-radius:20%;
 `;
 
 export const FooterContent = styled.div`
@@ -15,7 +18,7 @@ export const FooterContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  
   @media (max-width: 768px) {
     padding: 0 1rem;
   }
@@ -27,11 +30,11 @@ export const FooterLinks = styled.div`
   margin-bottom: 1rem;
 
   a {
-    color: #bdc3c7;
+    color: #fff;
     transition: color 0.3s;
 
     &:hover {
-      color: #3498db;
+      color: #7F00FF;
     }
   }
 
@@ -46,4 +49,5 @@ export const FooterCopyright = styled.p`
   font-size: 0.9rem;
   color: #7f8c8d;
   margin: 0;
+  readonly;
 `;

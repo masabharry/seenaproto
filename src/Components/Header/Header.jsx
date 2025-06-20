@@ -1,46 +1,69 @@
 // src/Components/Header/Header.jsx
-import React, { useState } from 'react';
-import { HeaderContainer, SearchBar, NavToggle } from './Header.styles';
-import Navigation from '../Navigation/Navigation';
-import { FaSearch } from "react-icons/fa";
+import React, { useEffect } from "react";
+import { FaSearch, FaBars } from "react-icons/fa";
 import { IoIosMenu } from "react-icons/io";
-import { 
-  DropdownContainer,  // Import directly as DropdownContainer
-  DropdownItem,
-  DropdownSection,
-  DropdownTitle 
-} from './DropdownMenu.styles';
+import { useAnimation, motion } from "framer-motion";
+import { useScroll } from "framer-motion";
+import { HeaderContainer, SearchBar, NavToggle, SearchInput } from "./Header.styles";
+import Navigation from "../Navigation/Navigation";
+import DropdownMenu from "./DropdownMenu";
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null);
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [activeDropdown, setActiveDropdown] = React.useState(null);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const controls = useAnimation();
+  const { scrollY } = useScroll();
 
-  const handleDropdown = (item) => {
+  useEffect(() => {
+    return scrollY.onChange((latest) => {
+      if (latest > 60) {
+        controls.start({
+          background: "#070000",
+          
+          transition: { duration: 0.4, ease: "easeOut" },
+        });
+      } else {
+        controls.start({
+          background: "transparent",
+         
+          transition: { duration: 0.4, ease: "easeOut" },
+        });
+      }
+    });
+  }, [scrollY, controls]);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const handleDropdown = (item) =>
     setActiveDropdown(activeDropdown === item ? null : item);
-  };
 
   return (
-    <HeaderContainer>
-     
+    <HeaderContainer
+      as={motion.header}
+      animate={controls}
+      initial={{ background: "transparent" }}
+    >
       <NavToggle onClick={toggleMenu}>☰</NavToggle>
-      <Navigation 
-        isMenuOpen={isMenuOpen} 
-        activeDropdown={activeDropdown} 
-        handleDropdown={handleDropdown} 
+      <Navigation
+        isMenuOpen={isMenuOpen}
+        activeDropdown={activeDropdown}
+        handleDropdown={handleDropdown}
       />
       {activeDropdown && (
-        <DropdownContainer 
-          type={activeDropdown} 
-          closeDropdown={() => setActiveDropdown(null)} 
+        <DropdownMenu
+          type={activeDropdown}
+          closeDropdown={() => setActiveDropdown(null)}
         />
       )}
       <SearchBar>
-<IoIosMenu />
-          <FaSearch />
+        <FaBars color="#7F00FF"/>
+        <SearchInput
+          type="text"
+          placeholder="Hinted Search Text"
+          onFocus={() => setActiveDropdown("search")}
+          onBlur={() => setActiveDropdown(null)}
+        />
+        <FaSearch color="#7F00FF" />
       </SearchBar>
     </HeaderContainer>
   );

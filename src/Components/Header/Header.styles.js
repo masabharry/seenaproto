@@ -7,15 +7,18 @@ export const HeaderContainer = styled.header`
   align-items: center;
   padding: 10px 20px;
   height: 80px;
-  background-color: #E0D7D7;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  position: relative;
-  z-index: 1000;
-
+  width: 100%;
+  position: fixed;
+  background: transparent ;
+  top: 60px;
+  left: 0;
+  z-index: 999;
+  borrder-radius: 10px;
   @media (max-width: 768px) {
     padding: 1rem;
   }
 `;
+
 
 export const Logo = styled.h1`
   font-size: 1.5rem;
@@ -29,7 +32,7 @@ export const NavToggle = styled.button`
   font-size: 1.5rem;
   cursor: pointer;
   display: none;
-  color: #ac3502;
+  color: #7F00FF;
 
   @media (max-width: 768px) {
     display: block;
@@ -45,12 +48,32 @@ const InnerDiv = styled.div`
 export const SearchBar = styled.div`
   width:300px;
   height:45px;
-  border:#938E98;
    display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0px 18px;
+  
+  background-color: transparent;
+  // border-bottom:  1px solid #7F00FF;
+  box-shadow: 0 0 10px #7F00FF;
+  // // border-radius: 5px;
   border-radius:70px;
-  background-color: #fff;
 
+  @media (max-width: 768px) {
+      width: 250px;
+      height: 35px;
+  }
 `
+
+export const SearchInput = styled.input`
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  padding: 0 0.5rem;
+  color: #7F00FF;
+  background-color: transparent;
+  &::placeholder {
+    color: #aaa;
+  }
+`;
