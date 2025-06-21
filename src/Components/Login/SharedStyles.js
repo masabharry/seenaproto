@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 // Updated Color Palette
-const themeColor = "#090909";       // Replacing previous purple
-const highlightFill = "#7F00FF";    // Subtle contrast fill
+const themeColor = "#090909"; // Replacing previous purple
+const highlightFill = "#7F00FF"; // Subtle contrast fill
 
 export const Overlay = styled(motion.div)`
   position: absolute;
@@ -46,11 +46,14 @@ export const Wrapper = styled.div`
     opacity: 1;
     filter: blur(0px);
   }
-    @media (max-width: 768px) {
+  @media (max-width: 768px) {
     width: 90%;
-    height: 400px;
-
-    }
+    height: 450px;
+  }
+  @media (max-width: 1080px) {
+    width: 70%;
+    height: 450px;
+  }
 `;
 
 export const FormBox = styled.div`
@@ -62,7 +65,7 @@ export const FormBox = styled.div`
   flex-direction: column;
   justify-content: center;
   padding: 0 60px;
-  
+
   &.register {
     right: 0;
     transform: translateX(120%);
@@ -90,9 +93,12 @@ export const FormBox = styled.div`
     width: 100%;
     height: 100%;
     padding: 0 30px;
-
   }
-
+  @media (max-width: 1080px) {
+    width: 100%;
+    height: 100%;
+    padding: 0 30px;
+  }
 `;
 
 export const InfoText = styled.div`
@@ -104,7 +110,7 @@ export const InfoText = styled.div`
   flex-direction: column;
   justify-content: center;
   padding: 0 40px;
-  
+
   &.register {
     left: 0;
     transform: translateX(-120%);
@@ -128,9 +134,12 @@ export const InfoText = styled.div`
     transform: translateX(0%);
     pointer-events: auto;
   }
-    @media (max-width: 768px) {
-      display:none;
-    }
+  @media (max-width: 768px) {
+    display: none;
+  }
+  @media (max-width: 1080px) {
+    display: none;
+  }
 `;
 
 export const InputBox = styled.div`
@@ -152,12 +161,24 @@ export const Input = styled.input`
   padding-right: 25px;
   color: ${highlightFill};
   &:focus,
-  &:valid {
+  &.filled {
     border-bottom-color: ${highlightFill};
   }
   @media (max-width: 768px) {
     font-size: 14px;
-    border-bottom-color: #fff;!important;
+    color: #fff;
+    &:focus,
+    &.filled {
+      border-bottom-color: #fff;
+    }
+  }
+  @media (max-width: 1080px) {
+    font-size: 14px;
+    color: #fff;
+    &:focus,
+    &.filled {
+      border-bottom-color: #fff;
+    }
   }
 `;
 
@@ -172,15 +193,23 @@ export const Label = styled.label`
   transition: 0.5s;
 
   ${Input}:focus ~ &,
-  ${Input}:valid ~ & {
-    top: -10px;
+  ${Input}.filled ~ & {
+    top: -15%;
     color: ${highlightFill};
   }
   @media (max-width: 768px) {
-    ${Input}:valid ~ & {
-    top: -2px;
-    color: '#fff';
+    ${Input}:focus ~ &,
+    ${Input}.filled ~ & {
+    top: -15%;
+      color: #fff !important;
+    }
   }
+       @media (max-width: 1080px) {
+   ${Input}:focus ~ &,
+    ${Input}.filled ~ & {
+    top: -15%;
+      color: #fff !important;
+    }
 `;
 
 export const Icon = styled.i`
@@ -190,7 +219,16 @@ export const Icon = styled.i`
   transform: translateY(-50%);
   color: white;
   font-size: 18px;
-  // color: ${highlightFill};
+  ${Input}:focus ~ &,
+  ${Input}.filled ~ & {
+    color: ${highlightFill};
+};
+    @media (max-width: 1080px) {
+    ${Input}:focus ~ &,
+    ${Input}.filled ~ & {
+       
+       color: #fff;
+  }
 `;
 
 export const Button = styled.button`
@@ -211,7 +249,7 @@ export const Button = styled.button`
   }
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: -100%;
     left: 0;
@@ -237,6 +275,11 @@ export const LogRegLink = styled.div`
       text-decoration: underline;
     }
   }
+  @media (max-width: 480px) {
+    span {
+    color: white !important;
+    }
+  }
 `;
 
 export const BgAnimate = styled.div`
@@ -255,6 +298,15 @@ export const BgAnimate = styled.div`
   ${Wrapper}.active & {
     transform: rotate(0) skewY(0);
     transition-delay: 0.5s;
+  }
+  @media (max-width: 1080px) {
+    transform: rotate(18deg) skewY(32deg);
+  }
+    @media (max-width: 768px) {
+    transform: rotate(48deg) skewY(9deg);
+  }
+      @media (max-width: 480px) {
+    transform: rotate(56deg) skewY(9deg);
   }
 `;
 
@@ -275,8 +327,21 @@ export const BgAnimate2 = styled.div`
     transform: rotate(-11deg) skewY(-41deg);
     transition-delay: 1.2s;
   }
-`;
+  @media (max-width: 1080px) {
+    transform: rotate(0deg) skewY(0deg);
+  }
+ @media (max-width: 768px) {
+  ${Wrapper}.active & {
+    transform: rotate(-5deg) skewY(-65deg);
+  }
+}
 
+@media (max-width: 480px) {
+  ${Wrapper}.active & {
+    transform: rotate(-16deg) skewY(-50deg) ;
+  }
+}
+`;
 
 export const Title = styled.h2`
   font-size: 35px;
@@ -288,4 +353,3 @@ export const Paragraph = styled.p`
   font-size: 16px;
   color: white;
 `;
-
