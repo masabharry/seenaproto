@@ -6,6 +6,7 @@ import {
   DropdownItem,
   DropdownSection,
 } from "./DropdownMenu.styles";
+import { Link } from "react-router-dom";
 
 const DropdownMenu = ({ type, closeDropdown }) => {
   const content = dropdownContent[type];
@@ -64,9 +65,9 @@ const DropdownMenu = ({ type, closeDropdown }) => {
           <DropdownSection key={index}>
             <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
               {section.items.map((item, i) => (
-                <li key={`${item}-${i}`}>
-                  <DropdownItem href="#" onClick={closeDropdown}>
-                    {item}
+                <li key={`${item.label}-${i}`}>
+                  <DropdownItem as={Link} to={item.href} onClick={closeDropdown}>
+                    {item.label}
                   </DropdownItem>
                 </li>
               ))}

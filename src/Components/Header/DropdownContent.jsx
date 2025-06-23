@@ -1,19 +1,18 @@
-// components/Header/DropdownContent.jsx
 const dropdownContent = {
   Product: {
     sections: [
       {
         title: "Feature Tour",
         items: [
-          "Feature Tour",
-          "Mobile app",
-          "Multi Campus support",
-          "Smart Student IS",
-          "Custom ERP Modules",
-          "Integration center",
-          "Why SeenaDSavior",
-          "AI Advantage",
-          "FAQ"
+          { label: "Feature Tour", href: "/product/feature-tour" },
+          { label: "Mobile app", href: "/product/mobile-app" },
+          { label: "Multi Campus support", href: "/product/multi-campus" },
+          { label: "Smart Student IS", href: "/product/student-is" },
+          { label: "Custom Modules", href: "/product/erp-modules" },
+          { label: "Video Guide", href: "/product/integration" },
+          { label: "Why SeenaDSavior", href: "/product/why" },
+          { label: "AI Advantage", href: "/product/ai-advantage" },
+          { label: "FAQ", href: "/product/faq" }
         ]
       }
     ]
@@ -23,12 +22,12 @@ const dropdownContent = {
       {
         title: "Our Vision",
         items: [
-          "Our Vision",
-          "Founding Story",
-          "Meet the Team",
-          "Pilot Schools & Users",
-          "News & Mention",
-          "Join our Team"
+          { label: "Our Vision", href: "/about/vision" },
+          { label: "Founding Story", href: "/about/founding-story" },
+          { label: "Meet the Team", href: "/about/team" },
+          { label: "SDS Users", href: "/about/pilots" },
+          { label: "News & Mention", href: "/about/news" },
+          { label: "Join our Team", href: "/about/join" }
         ]
       }
     ]
@@ -38,13 +37,29 @@ const dropdownContent = {
       {
         title: null,
         items: [
-          "Student",
-          "Teacher",
-          "Admin",
-          "Principal",
-          "Owner",
-          "Parents",
-          "Community"
+          { label: "Student", href: "/actors/student" },
+          { label: "Teacher", href: "/actors/teacher" },
+          { label: "Admin", href: "/actors/admin" },
+          { label: "Principal", href: "/actors/principal" },
+          { label: "Owner", href: "/actors/owner" },
+          { label: "Parents", href: "/actors/parents" },
+          { label: "Community", href: "/actors/community" }
+        ]
+      }
+    ]
+  },
+  Community: {
+    sections: [
+      {
+        title: null,
+        items: [
+          { label: "Educator Network", href: "/actors/student" },
+          { label: "Student Community", href: "/actors/teacher" },
+          { label: "Principal Community", href: "/actors/admin" },
+          { label: "Webinars & Meetups", href: "/actors/principal" },
+          { label: "User Feedback", href: "/actors/owner" },
+          { label: "Help Center/Support Docs", href: "/actors/parents" },
+          { label: "Community", href: "/actors/community" }
         ]
       }
     ]

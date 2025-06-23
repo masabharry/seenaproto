@@ -5,12 +5,8 @@ import * as THREE from "three";
 // Ribbon Component
 const Ribbon = ({
   offset = 0,
-  waveSpeed = 10,
-  twistStrength = 0.5,
   yOffset = 0,
-  colorStart = 0.6,
   position = [0, 0, -20],
-  xWaveStrength = 1.5,
 }) => {
   const meshRef = useRef();
   const width = 0.2; 

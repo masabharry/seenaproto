@@ -1,6 +1,6 @@
 // src/Components/Header/Header.jsx
 import React, { useState } from "react";
-import { HeaderContainer, InnerDiv, Logo, LoginButton } from "./Topbar.styles";
+import { HeaderContainer, InnerDiv, Logo, LoginButton, InnerDivLink } from "./Topbar.styles";
 import { useAnimation, useScroll, motion } from "framer-motion";
 import { useEffect } from "react";
 import mainlogo from "../../Assets/a1.png"
@@ -46,10 +46,12 @@ const Topbar = () => {
           animate={controls}
           initial={{ background: "transparent" }}
     >
-      <InnerDiv>
+     
+      <InnerDivLink to={'/'}>
+         
         <img src={mainlogo} alt="Logo" height={40} width={40} />
-        <Logo>SeenaDSavior</Logo>
-      </InnerDiv>
+        <Logo>SeenaDsavior</Logo>
+      </InnerDivLink>
       <InnerDiv>
         <Link to={"/login"}>
           <LoginButton >Login/Register</LoginButton>

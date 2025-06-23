@@ -1,5 +1,6 @@
 // components/Header/Header.styles.js
 import styled from 'styled-components';
+import {Link} from 'react-router-dom';
 
 export const HeaderContainer = styled.header`
   display: flex;
@@ -28,6 +29,11 @@ export const Logo = styled.h1`
 `;
 
 export const InnerDiv = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2px;
+`;
+export const InnerDivLink = styled(Link)`
   display: flex;
   align-items: center;
   gap: 2px;
