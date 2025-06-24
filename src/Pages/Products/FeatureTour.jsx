@@ -1,252 +1,292 @@
-import React from "react";
+// FeatureTour.jsx (with Hero section + Navigation + Modal with Detailed Points)
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { AnimatePresence, motion } from "framer-motion";
 import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
-import { PageContainer } from "../../App.styles";
 import Topbar from "../../Components/Header/Topbar";
-import styled from "styled-components";
-import widgimage from "../../Assets/widgets.png";
-import academicIcon from "../../Assets/icons/academicIcon.png";
-import adminIcon from "../../Assets/icons/adminIcon.png";
-import communicationIcon from "../../Assets/icons/communicationIcon.png";
-import contentIcon from "../../Assets/icons/contentIcon.png";
-import integrationIcon from "../../Assets/icons/integrationIcon.png";
-import insightsIcon from "../../Assets/icons/insightsIcon.png";
+
+// import { FiIdCard }
+
+import {
+  FiBookOpen,
+  FiSettings,
+  FiUsers,
+  FiFolder,
+  FiLogIn,
+  FiBarChart2,
+  FiUserCheck,
+  FiCalendar,
+  FiAlertCircle,
+  FiCheckCircle,
+  FiFileText,
+  FiCreditCard,
+  FiMessageSquare,
+  FiGlobe,
+  FiClipboard,
+  FiDollarSign,
+  FiUserPlus,
+  FiUserX,
+  FiAward,
+  FiGrid,
+  FiBook,
+  FiBox,
+  FiImage,
+  FiEdit2,
+  FiHash,
+  FiCpu,
+  FiTruck,
+  FiCheckSquare,
+  FiUsers as FiUsersIcon,
+} from "react-icons/fi";
+
+const PageContainer = styled.div`
+  background: #090909;
+  color: white;
+  min-height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+`;
+
+const HeroSection = styled.div`
+  text-align: center;
+  padding: 7rem 2rem;
+  background: transparent;
+`;
+
+const Title = styled.h1`
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  transition: 0.3s;
+  cursor: pointer;
+  &:hover {
+    color: #7f00ff;
+  }
+`;
+
+const Subtitle = styled.p`
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  color: #ccc;
+`;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 3rem 1rem;
   gap: 2rem;
-  width: 100%;
-  margin: 4rem 0;
-`;
-
-const Heading = styled.h1`
-  font-size: 2.8rem;
-  font-weight: 700;
-  color: #fff;
-  text-align: center;
-
-  @media (max-width: 768px) {
-    font-size: 2.2rem;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 1.8rem;
-  }
+  padding: 4rem 2rem;
+  width: 80%;
+  margin: 0 auto;
+  border-top: 1px solid #7f00ff;
 `;
 
 const SubHeading = styled.h2`
   font-size: 2rem;
-  font-weight: 300;
-  color: #7f00ff;
   text-align: center;
-
-  @media (max-width: 768px) {
-    font-size: 1.5rem;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 1.2rem;
-  }
-`;
-
-const DescriptionSection = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 2rem;
-  margin-top: 1rem;
-  justify-content: space-between;
-  align-items: center;
-  width: 90%;
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
-`;
-
-const Description = styled.p`
-  font-size: 1.2rem;
-  color: #fff;
-  line-height: 1.8;
-  flex: 1;
-  width: 60%;
-
-  @media (max-width: 768px) {
-    width: 100%;
-    text-align: center;
-  }
-`;
-
-const Image = styled.img`
-  width: 300px;
-  height: auto;
-
-  @media (max-width: 768px) {
-    display: none;
+  margin-bottom: 3rem;
+  color: #7f00ff;
+  transition: 0.3s;
+  cursor: pointer;
+  &:hover {
+    color: #fff;
   }
 `;
 
 const FeatureGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
-  width: 100%;
+  width: 90%;
 `;
 
-const FeatureTourSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 97%;
-  // background-color: #fff;
-  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.49);
-  background: transparent;
-  padding: 1.5rem;
-  border-radius: 20px;
-`;
 const FeatureCard = styled.div`
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
-  padding: 2rem 1.5rem;
+  padding: 1.5rem;
   color: white;
-  // box-shadow: 0 8px 30px rgba(127, 0, 255, 0.15);
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 1rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  backdrop-filter: blur(6px);
-  text-align: center;
-  height: 100%;
   cursor: pointer;
-
+  text-align: left;
   &:hover {
     transform: scale(1.03);
-    box-shadow: 0 12px 40px rgba(127, 0, 255, 0.3);
+    box-shadow: 0 0 15px #7f00ff33;
   }
 `;
 
+const FeatureHeader = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
 
+  svg {
+    color: #7f00ff;
+    font-size: 1.4rem;
+  }
 
-const CardTitle = styled.h3`
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: #ffffff;
-  margin: 0.3rem 0;
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+    color: white;
+  }
 `;
 
-
-const CardContent = styled.ul`
-  list-style: none;
-  padding: 0;
+const FeatureDesc = styled.p`
+  font-size: 0.9rem;
+  color: #ccc;
   margin: 0;
-  font-size: 0.95rem;
-  color: #cccccc;
-  line-height: 1.6;
 `;
 
+const MainContent = styled.div`
+  padding: 150px 0;
+`;
 
+// Modal Styles
+const Overlay = styled(motion.div)`
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+`;
 
-const FeatureHeading = styled.h2`
-  font-size: 2rem;
-  font-weight: 600;
+const ModalBox = styled(motion.div)`
+  background: #111;
+  padding: 2rem;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 600px;
+  color: white;
+  position: relative;
+`;
+
+const ModalTitle = styled.h2`
   color: #7f00ff;
+  font-size: 1.8rem;
   margin-bottom: 1rem;
 `;
-const FeatureSubHeading = styled.h3`
-  font-size: 1.2rem;
-  font-weight: 400;
-  color: #fff;
-  margin-bottom: 2rem;
+
+const ModalList = styled.ul`
+  padding-left: 0;
+  margin-top: 1rem;
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.7rem;
+    font-size: 0.95rem;
+    color: #ccc;
+
+    svg {
+      color: #7f00ff;
+      font-size: 1.1rem;
+    }
+  }
 `;
 
-const Icon = styled.img`
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
+const CloseButton = styled.button`
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
 `;
-
-
 
 const FeatureTour = () => {
-  const Data = {
-    title: "AI Powered Smart Education for all institutes",
-    subHeading: "Everything you are looking for",
-    description:
-      "SeenaDSaviour is an AI-powered school management system designed to simplify and automate everyday academic and administrative tasks. From facial recognition attendance and smart grading to fee predictions and intelligent reporting, SeenaDSaviour streamlines operations for teachers, students, and administrators, principal, owner, parents and general community creating a smarter, more connected educational environment.",
-  };
+  const [selectedFeature, setSelectedFeature] = useState(null);
 
   const features = [
     {
-      title: "Academic Management",
-      icon: academicIcon,
+      title: "Academics",
+      icon: <FiBookOpen />,
+      desc: "Manage students, teachers, timetable, and more.",
       points: [
-        "Student Management",
-        "Teacher Management",
-        "Parent Management",
-        "Student Attendance",
-        "Student Leave Management",
-        "Sample Paper Manager",
-        "Time Table",
-        "Academic Chat",
-        "Remark Reporting",
-        "Student Placement",
-        "Club Management",
+        { icon: <FiUserCheck />, text: "Student Management" },
+        { icon: <FiUsersIcon />, text: "Teacher Management" },
+        { icon: <FiUsersIcon />, text: "Parent Management" },
+        { icon: <FiCalendar />, text: "Student Attendance" },
+        { icon: <FiCalendar />, text: "Leave Management" },
+        { icon: <FiFileText />, text: "Sample Paper Manager" },
+        { icon: <FiCalendar />, text: "Time Table" },
+        { icon: <FiMessageSquare />, text: "Academic Chat" },
+        { icon: <FiAlertCircle />, text: "Remark Reporting" },
+        { icon: <FiCheckCircle />, text: "Student Placement" },
+        { icon: <FiUsersIcon />, text: "Club Management" },
       ],
     },
     {
-      title: "Administrative & Operational Management",
-      icon: adminIcon,
+      title: "Admin Tools",
+      icon: <FiSettings />,
+      desc: "Handle fees, admissions, ID cards, HR, etc.",
       points: [
-        "CMS",
-        "Admission/Registration",
-        "HR Module",
-        "Payroll Management",
-        "Fee Management",
-        "ID Card Generator",
-        "Certificate Generator",
-        "User Management",
+        { icon: <FiGrid />, text: "CMS" },
+        { icon: <FiUserPlus />, text: "Admission/Registration" },
+        { icon: <FiUsers />, text: "HR Module" },
+        { icon: <FiDollarSign />, text: "Payroll Management" },
+        { icon: <FiCreditCard />, text: "Fee Management" },
+        { icon: <FiUserX />, text: "ID Card Generator" },
+        { icon: <FiAward />, text: "Certificate Generator" },
+        { icon: <FiUserCheck />, text: "User Management" },
       ],
     },
     {
-      title: "Communication & Engagement",
-      icon: communicationIcon,
+      title: "Engagement",
+      icon: <FiUsers />,
+      desc: "News, polls, alumni, and SMS alerts.",
       points: [
-        "SMS Alerts",
-        "News Management",
-        "Event Calendar",
-        "Poll",
-        "Alumni",
-        "Visitor Register",
+        { icon: <FiMessageSquare />, text: "SMS Alerts" },
+        { icon: <FiGlobe />, text: "News Management" },
+        { icon: <FiCalendar />, text: "Event Calendar" },
+        { icon: <FiBarChart2 />, text: "Poll" },
+        { icon: <FiUsers />, text: "Alumni" },
+        { icon: <FiClipboard />, text: "Visitor Register" },
       ],
     },
     {
-      title: "Digital Resource & Content Management",
-      icon: contentIcon,
+      title: "Content",
+      icon: <FiFolder />,
+      desc: "Library, reports, galleries, diaries.",
       points: [
-        "Library Management",
-        "Inventory Management",
-        "Report Center",
-        "Gallery",
-        "Student Diary",
+        { icon: <FiBook />, text: "Library Management" },
+        { icon: <FiBox />, text: "Inventory Management" },
+        { icon: <FiFileText />, text: "Report Center" },
+        { icon: <FiImage />, text: "Gallery" },
+        { icon: <FiEdit2 />, text: "Student Diary" },
       ],
     },
     {
-      title: "Technical Integration & System Access",
-      icon: integrationIcon,
+      title: "Access",
+      icon: <FiLogIn />,
+      desc: "Role-based login, barcode & system integration.",
       points: [
-        "Student Login",
-        "Teacher Login",
-        "Parent Login",
-        "Barcode Integration",
+        { icon: <FiLogIn />, text: "Student Login" },
+        { icon: <FiUserCheck />, text: "Teacher Login" },
+        { icon: <FiUsers />, text: "Parent Login" },
+        { icon: <FiHash />, text: "Barcode Integration" },
       ],
     },
     {
-      title: "Intelligence & Insights",
-      icon: insightsIcon,
-      points: ["Task Manager", "Complaint Report Manager", "Transport Manager"],
+      title: "Insights",
+      icon: <FiBarChart2 />,
+      desc: "AI reports, tasks, transport & complaint system.",
+      points: [
+        { icon: <FiCpu />, text: "AI Reports" },
+        { icon: <FiCheckSquare />, text: "Task Manager" },
+        { icon: <FiAlertCircle />, text: "Complaint Report Manager" },
+        { icon: <FiTruck />, text: "Transport Manager" },
+      ],
     },
   ];
 
@@ -254,34 +294,60 @@ const FeatureTour = () => {
     <PageContainer>
       <Topbar />
       <Header />
-      <Container>
-        <Heading>{Data.title}</Heading>
-        <SubHeading>{Data.subHeading}</SubHeading>
-        <DescriptionSection>
-          <Description>{Data.description}</Description>
-          <Image src={widgimage} alt="Widgets illustration" />
-        </DescriptionSection>
-        <FeatureTourSection>
-          <FeatureHeading>Core Features of SeenaDsavior</FeatureHeading>
-          <FeatureSubHeading>
-            AI-Powered Smart Education System
-          </FeatureSubHeading>
+      <MainContent>
+        <HeroSection>
+          <Title>AI Powered Smart Education for All</Title>
+          <Subtitle>
+            Simplify and automate school management — from attendance and
+            reports to communication and analytics.
+          </Subtitle>
+        </HeroSection>
+        <Container>
+          <SubHeading>Explore Our Core Modules</SubHeading>
           <FeatureGrid>
-            {features.map((feature, i) => (
-  <FeatureCard key={i}>
-    <Icon src={feature.icon} alt={`${feature.title} icon`} />
-    <CardTitle>{feature.title}</CardTitle>
-    <CardContent>
-      {feature.points.map((point, idx) => (
-        <li key={idx}>• {point}</li>
-      ))}
-    </CardContent>
-  </FeatureCard>
-))}
-
+            {features.map((f, i) => (
+              <FeatureCard key={i} onClick={() => setSelectedFeature(f)}>
+                <FeatureHeader>
+                  {f.icon}
+                  <h3>{f.title}</h3>
+                </FeatureHeader>
+                <FeatureDesc>{f.desc}</FeatureDesc>
+              </FeatureCard>
+            ))}
           </FeatureGrid>
-        </FeatureTourSection>
-      </Container>
+        </Container>
+      </MainContent>
+
+      <AnimatePresence>
+        {selectedFeature && (
+          <Overlay
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedFeature(null)}
+          >
+            <ModalBox
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <CloseButton onClick={() => setSelectedFeature(null)}>
+                &times;
+              </CloseButton>
+              <ModalTitle>{selectedFeature.title}</ModalTitle>
+              <ModalList>
+                {selectedFeature.points?.map((item, index) => (
+                  <li key={index}>
+                    {item.icon} {item.text}
+                  </li>
+                ))}
+              </ModalList>
+            </ModalBox>
+          </Overlay>
+        )}
+      </AnimatePresence>
+
       <Footer />
     </PageContainer>
   );
