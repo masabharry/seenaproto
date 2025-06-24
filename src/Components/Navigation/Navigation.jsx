@@ -1,4 +1,3 @@
-// components/Navigation/Navigation.jsx
 import React from "react";
 import {
   NavList,
@@ -16,21 +15,39 @@ const navItems = [
   { name: "SDS Packages", href: "/packages", dropdown: false },
 ];
 
-const Navigation = ({ isMenuOpen, activeDropdown, handleDropdown }) => {
+const Navigation = ({
+  isMenuOpen,
+  activeDropdown,
+  handleDropdown,
+  isTouchDevice,
+}) => {
   return (
     <NavList isMenuOpen={isMenuOpen}>
       {navItems.map((item) => (
-        <NavItem key={item.name}>
+        <NavItem
+          key={item.name}
+          onMouseEnter={
+            !isTouchDevice && item.dropdown
+              ? () => handleDropdown(item.type)
+              : undefined
+          }
+          data-dropdown
+        >
           {item.dropdown ? (
             <DropdownTrigger
-              onClick={() => handleDropdown(item.type)}
+              onClick={
+                isTouchDevice ? () => handleDropdown(item.type) : undefined
+              }
               isActive={activeDropdown === item.type}
               data-trigger={item.type}
+              data-dropdown
             >
               {item.name}
             </DropdownTrigger>
           ) : (
-            <NavLink as={Link} to={item.href || "#"}>{item.name}</NavLink>
+            <NavLink as={Link} to={item.href || "#"}>
+              {item.name}
+            </NavLink>
           )}
         </NavItem>
       ))}

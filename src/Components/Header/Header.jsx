@@ -1,41 +1,64 @@
-// src/Components/Header/Header.jsx
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FaSearch, FaBars } from "react-icons/fa";
-import { IoIosMenu } from "react-icons/io";
 import { useAnimation, motion } from "framer-motion";
 import { useScroll } from "framer-motion";
-import { HeaderContainer, SearchBar, NavToggle, SearchInput } from "./Header.styles";
+import {
+  HeaderContainer,
+  SearchBar,
+  NavToggle,
+  SearchInput,
+} from "./Header.styles";
 import Navigation from "../Navigation/Navigation";
 import DropdownMenu from "./DropdownMenu";
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const [activeDropdown, setActiveDropdown] = React.useState(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   const controls = useAnimation();
   const { scrollY } = useScroll();
 
   useEffect(() => {
+    setIsTouchDevice(
+      "ontouchstart" in window || navigator.maxTouchPoints > 0
+    );
+  }, []);
+
+  useEffect(() => {
     return scrollY.onChange((latest) => {
-      if (latest > 60) {
-        controls.start({
-          background: "#070000",
-          
-          transition: { duration: 0.4, ease: "easeOut" },
-        });
-      } else {
-        controls.start({
-          background: "transparent",
-         
-          transition: { duration: 0.4, ease: "easeOut" },
-        });
-      }
+      controls.start({
+        background: latest > 60 ? "#070000" : "transparent",
+        transition: { duration: 0.4, ease: "easeOut" },
+      });
     });
   }, [scrollY, controls]);
 
+  // 👉 Close dropdown on outside touch (only on touch devices)
+  useEffect(() => {
+    const closeDropdown = (e) => {
+      if (!e.target.closest("[data-dropdown]")) {
+        setActiveDropdown(null);
+      }
+    };
+
+    if (isTouchDevice) {
+      document.addEventListener("click", closeDropdown);
+    }
+    return () => {
+      document.removeEventListener("click", closeDropdown);
+    };
+  }, [isTouchDevice]);
+
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  const handleDropdown = (item) =>
-    setActiveDropdown(activeDropdown === item ? null : item);
+
+  const handleDropdown = (item) => {
+    if (isTouchDevice) {
+      setActiveDropdown((prev) => (prev === item ? null : item));
+    } else {
+      setActiveDropdown(item);
+    }
+  };
 
   return (
     <HeaderContainer
@@ -48,6 +71,7 @@ const Header = () => {
         isMenuOpen={isMenuOpen}
         activeDropdown={activeDropdown}
         handleDropdown={handleDropdown}
+        isTouchDevice={isTouchDevice}
       />
       {activeDropdown && (
         <DropdownMenu
@@ -56,7 +80,7 @@ const Header = () => {
         />
       )}
       <SearchBar>
-        <FaBars color="#7F00FF"/>
+        {/* <FaBars color="#7F00FF" /> */}
         <SearchInput
           type="text"
           placeholder="Hinted Search Text"

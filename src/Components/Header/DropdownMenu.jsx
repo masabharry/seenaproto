@@ -13,9 +13,21 @@ const DropdownMenu = ({ type, closeDropdown }) => {
   const dropdownRef = useRef(null);
   const [style, setStyle] = useState(null);
 
-  useEffect(() => {
-    if (!content) return;
+  const timeoutRef = useRef(null);
 
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      closeDropdown();
+    }, 300);
+  };
+
+  const handleMouseEnter = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+  };
+
+  useEffect(() => {
     const triggerEl = document.querySelector(`[data-trigger="${type}"]`);
     if (triggerEl) {
       const rect = triggerEl.getBoundingClientRect();
@@ -24,22 +36,7 @@ const DropdownMenu = ({ type, closeDropdown }) => {
         left: rect.left + window.scrollX,
       });
     }
-  }, [type, content]);
-
-  const timeoutRef = useRef(null);
-
-  // Auto-close on mouse leave with small delay buffer
-  const handleMouseLeave = () => {
-    timeoutRef.current = setTimeout(() => {
-      closeDropdown();
-    }, 300); // 300ms delay to allow re-entry
-  };
-
-  const handleMouseEnter = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-  };
+  }, [type]);
 
   if (!content || !style) return null;
 
@@ -52,11 +49,12 @@ const DropdownMenu = ({ type, closeDropdown }) => {
         left: `${style.left}px`,
         zIndex: 1000,
       }}
+      data-dropdown
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <DropdownContainer
         onClick={(e) => e.stopPropagation()}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.25, ease: "easeOut" }}
@@ -79,5 +77,6 @@ const DropdownMenu = ({ type, closeDropdown }) => {
     document.body
   );
 };
+
 
 export default DropdownMenu;

@@ -14,7 +14,7 @@ const dropdownContent = {
           { label: "AI Advantage", href: "/product/ai-advantage" },
           { label: "FAQ", href: "/product/faq" }
         ]
-      }
+      }  
     ]
   },
   About: {
