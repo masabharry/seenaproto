@@ -7,18 +7,23 @@ import { PageContainer } from '../App.styles';
 import Topbar from '../Components/Header/Topbar';
 import { ClothBackground } from '../Components/ClothBackground';
 import { BackgroundWrapper } from '../Components/Hero/Hero.styles';
+import Features from '../Components/Homecomponents/Features';
+import Highlight from '../Components/Homecomponents/Highlight';
+import Testimonials from '../Components/Homecomponents/Testimonials';
 
 const HomePage = () => {
   return (
     <PageContainer>
       <BackgroundWrapper>
-         <ClothBackground/>
-         
+         <ClothBackground/> 
       </BackgroundWrapper>
      
       <Topbar/>
       <Header />
       <Hero />
+      <Features/>
+      <Highlight />
+      <Testimonials/>
       <Footer />
 
     </PageContainer>
