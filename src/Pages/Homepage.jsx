@@ -13,6 +13,7 @@ const HomePage = () => {
     <PageContainer>
       <BackgroundWrapper>
          <ClothBackground/>
+         
       </BackgroundWrapper>
      
       <Topbar/>
