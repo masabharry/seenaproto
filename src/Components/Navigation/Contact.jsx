@@ -138,7 +138,7 @@ const Contact = () => {
             <p>Speak with our Assistance</p>
             <a href="tel:+923121234567">+92 312 1234567</a>
           </Card>
-          <Card>
+          {/* <Card>
             <FiMail />
             <h3>Email</h3>
             <p>Send us Email</p>
@@ -157,7 +157,7 @@ const Contact = () => {
             >
               DHA Phase II, Islamabad, Pakistan
             </a>
-          </Card>
+          </Card> */}
         </CardGrid>
         <ContactForm>
           <Form onSubmit={(e) => e.preventDefault()}>

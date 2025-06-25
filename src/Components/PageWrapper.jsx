@@ -2,14 +2,14 @@
 import { motion } from "framer-motion";
 
 const pageVariants = {
-  initial: { opacity: 0, y: 16 },   // smaller entry slide
+  initial: { opacity: 0, y: 16 },   
   animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -10 },     // smaller exit lift
+  exit: { opacity: 0, y: -10 },    
 };
 
 const pageTransition = {
-  duration: 0.20,       // faster but still smooth
-  ease: [0.4, 0.0, 0.2, 1], // realistic cubic-bezier easing (ease-in-out)
+  duration: 0.20,      
+  ease: [0.4, 0.0, 0.2, 1], 
 };
 
 const PageWrapper = ({ children }) => {
