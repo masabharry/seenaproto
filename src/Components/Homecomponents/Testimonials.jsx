@@ -19,7 +19,7 @@ const Grid = styled.div`
 
 const Quote = styled.div`
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 2rem;
   border-radius: 14px;
   max-width: 340px;

@@ -8,7 +8,7 @@ const Section = styled.section`
   background: #0b0b0b;
   text-align: center;
   // z-index: 2;
-`;
+`; 
 
 const Title = styled.h2`
   font-size: 2.5rem;
@@ -25,7 +25,7 @@ const Grid = styled.div`
 
 const Card = styled.div`
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 2rem;
   border-radius: 16px;
   color: white;
@@ -64,12 +64,12 @@ const Features = () => {
         </Card>
         <Card>
           <FiSmartphone />
-          <h3>Mobile-First</h3>
+          <h3>Mobile App</h3>
           <p>Seamless experience across all devices and platforms.</p>
         </Card>
         <Card>
           <FiTrendingUp />
-          <h3>Data Insights</h3>
+          <h3>Data Analysis</h3>
           <p>Make decisions with smart dashboards and performance metrics.</p>
         </Card>
       </Grid>

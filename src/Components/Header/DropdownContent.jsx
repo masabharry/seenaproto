@@ -5,9 +5,9 @@ const dropdownContent = {
         title: "Feature Tour",
         items: [
           { label: "Feature Tour", href: "/product/feature-tour" },
-          { label: "Mobile app", href: "/product/mobile-app" },
-          { label: "Multi Campus support", href: "/product/multi-campus" },
-          { label: "Smart Student IS", href: "/product/student-is" },
+          { label: "Mobile App", href: "/product/mobile-app" },
+          { label: "Multi Campus Support", href: "/product/multi-campus" },
+          { label: "Student Smart IS", href: "/product/student-is" },
           { label: "Custom Modules", href: "/product/erp-modules" },
           { label: "Video Guide", href: "/product/integration" },
           { label: "Why SeenaDSavior", href: "/product/why" },
@@ -26,7 +26,7 @@ const dropdownContent = {
           { label: "Founding Story", href: "/about/founding-story" },
           { label: "Meet the Team", href: "/about/team" },
           { label: "SDS Users", href: "/about/pilots" },
-          { label: "News & Mention", href: "/about/news" },
+          { label: "News & Views", href: "/about/news" },
           { label: "Join our Team", href: "/about/join" }
         ]
       }
@@ -41,7 +41,7 @@ const dropdownContent = {
           { label: "Teacher", href: "/actors/teacher" },
           { label: "Admin", href: "/actors/admin" },
           { label: "Principal", href: "/actors/principal" },
-          { label: "Owner", href: "/actors/owner" },
+          { label: "Director", href: "/actors/owner" },
           { label: "Parents", href: "/actors/parents" },
           { label: "Community", href: "/actors/community" }
         ]

@@ -42,13 +42,15 @@ export const NavItem = styled.li`
 
 export const NavLink = styled.a`
   text-decoration: none;
-  color: #7F00FF;
+  color: #fff;
   font-size: 18px;
   font-weight: 500;
   padding: 0.5rem 0;
   transition: color 0.3s;
+  border-bottom: 2px solid transparent;
   &:hover {
-    color: #fff;
+  border-bottom: 2px solid #7F00FF;
+    color: #7F00FF;
   }
 `;
 
@@ -56,17 +58,19 @@ export const DropdownTrigger = styled.button`
   background: none;
   border: none;
   font-size: 18px;
-  color: #7F00FF;
+  color: #fff;
   font-weight: 500;
   font-size: 1rem;
   padding: 0.5rem 0;
   cursor: pointer;
   transition: color 0.3s;
-  position: relative;
+  border-bottom: 2px solid transparent;
+  // position: relative;
 
   &:hover {
   
-    color:  #fff;
+  border-bottom: 2px solid #7F00FF;
+    color:  #7F00FF;
   }
 
   &::after {

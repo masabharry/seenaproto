@@ -7,7 +7,7 @@ const Section = styled.section`
   padding: 5rem 2rem;
   background: #0d0d0d;
   text-align: center;
-//   z-index: 2;
+  // z-index: 2;
 `;
 
 const Grid = styled.div`
@@ -21,7 +21,7 @@ const RoleBox = styled.div`
   flex: 1;
   min-width: 220px;
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(127, 0, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 2rem;
   border-radius: 14px;
   color: white;
@@ -44,11 +44,11 @@ const RoleBox = styled.div`
   }
 
   &:hover {
-    background: rgba(127, 0, 255, 0.05);
+    // background: rgba(127, 0, 255, 0.05);
     transform: translateY(-5px);
   }
 `;
-
+ 
 const Highlights = () => (
   <Section>
     <h2 style={{ color: '#7f00ff', marginBottom: '2rem', zIndex: 2 }}>Empowering Everyone</h2>

@@ -9,10 +9,11 @@ import { Link } from "react-router-dom";
 
 const navItems = [
   { name: "Our Product", type: "Product", dropdown: true },
-  { name: "About Us", type: "About", dropdown: true },
-  { name: "7 Es", type: "Actors", dropdown: true },
+  
+  { name: "Seven Pillers", type: "Actors", dropdown: true },
   { name: "SDS Community", type: "Community", dropdown: true },
   { name: "SDS Packages", href: "/packages", dropdown: false },
+  { name: "About Us", type: "About", dropdown: true },
 ];
 
 const Navigation = ({
