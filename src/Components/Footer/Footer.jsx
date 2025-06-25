@@ -9,7 +9,7 @@ const Footer = () => {
         <FooterLinks>
           <a href="#">Privacy Policy</a>
           <a href="#">Terms of Service</a>
-          <a href="#">Contact Us</a>
+          <a href="/contact-us">Contact Us</a>
         </FooterLinks>
         <FooterCopyright>
           © {new Date().getFullYear()} SeenaDSavior. All rights reserved.

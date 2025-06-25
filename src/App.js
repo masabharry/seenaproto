@@ -8,6 +8,7 @@ import FeatureTour from './Pages/Products/FeatureTour';
 import { GlobalStyle } from './App.styles';
 import Login from './Components/Login/Login';
 import MobileApp from './Pages/Products/MobileApp';
+import Contact from './Components/Navigation/Contact';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/community" element={<CommunityPage />} /> 
         <Route path="/product/feature-tour" element={<FeatureTour />} /> 
         <Route path="/product/mobile-app" element={<MobileApp />} /> 
+        <Route path="/contact-us" element={<Contact />} /> 
         
       </Routes>
     </Router>
