@@ -60,6 +60,24 @@ const Header = () => {
     }
   };
 
+    // 👇 Close dropdown on scroll if mouse is not over nav or dropdown
+  useEffect(() => {
+    const handleScroll = () => {
+      const isHoveringDropdown = document.querySelector(":hover[data-dropdown]");
+      const isHoveringTrigger = document.querySelector(":hover[data-trigger]");
+
+      if (!isHoveringDropdown && !isHoveringTrigger) {
+        setActiveDropdown(null);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+
   return (
     <HeaderContainer
       as={motion.header}

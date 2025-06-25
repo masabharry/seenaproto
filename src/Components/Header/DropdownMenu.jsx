@@ -16,10 +16,9 @@ const DropdownMenu = ({ type, closeDropdown }) => {
   const timeoutRef = useRef(null);
 
   const handleMouseLeave = () => {
-    timeoutRef.current = setTimeout(() => {
-      closeDropdown();
-    }, 300);
-  };
+  closeDropdown(); // remove the timeout — close instantly
+};
+
 
   const handleMouseEnter = () => {
     if (timeoutRef.current) {
@@ -55,7 +54,7 @@ const DropdownMenu = ({ type, closeDropdown }) => {
     >
       <DropdownContainer
         onClick={(e) => e.stopPropagation()}
-        initial={{ opacity: 0, y: -10 }}
+        initial={{ opacity: 0, y: -4 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.25, ease: "easeOut" }}
       >
