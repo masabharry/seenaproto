@@ -55,12 +55,13 @@ const ToggleButton = styled.button`
 
 const Cards = styled.div`
   display: flex;
-  flex-wrap: ${(props) => (props.isMobile ? "nowrap" : "wrap")};
+  flex-wrap: wrap;
   gap: 2rem;
   justify-content: center;
   position: relative;
-  overflow: hidden;
 `;
+
+
 
 const SliderButtonLeft = styled.button`
   position: absolute;
@@ -84,28 +85,28 @@ const SliderButtonLeft = styled.button`
   }
 
   @media (max-width: 768px) {
-    top: 135%;
-    left: 20%;
+    top: 45%;
+    left: -25%;
   }
 
   @media (max-width: 480px) {
-    top: 147%;
-    left: 9%;
+    top: 45%;
+    left: -20%;
   }
 `;
 
 const SliderButtonRight = styled(SliderButtonLeft)`
   left: auto;
-  right: 0; /* ensure it's on the right for larger screens */
+  right: 0; 
 
   @media (max-width: 768px) {
-    top: 135%;
-    right: 20%;
+    top: 45%;
+    right: -25%;
   }
 
   @media (max-width: 480px) {
-    top: 147%;
-    right: 9%;
+    top: 45%;
+    right: -20%;
   }
 `;
 
@@ -287,9 +288,7 @@ const handlePrev = () => {
             </Card>
           ))}
 
-          
-        </Cards>
-        {isMobile && (
+          {isMobile && (
             <>
               <SliderButtonLeft onClick={handlePrev}>
                 <FaChevronLeft />
@@ -299,6 +298,8 @@ const handlePrev = () => {
               </SliderButtonRight>
             </>
           )}
+        </Cards>
+        
       </Wrapper>
       <Footer />
     </PageContainer>
