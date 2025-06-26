@@ -6,6 +6,7 @@ import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
 import Topbar from "../Components/Header/Topbar";
 import { PageContainer } from "../App.styles";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const Wrapper = styled.div`
   padding: 6rem 2rem;
@@ -50,12 +51,64 @@ const ToggleButton = styled.button`
   transition: 0.3s;
 `;
 
+
+
 const Cards = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: ${(props) => (props.isMobile ? "nowrap" : "wrap")};
   gap: 2rem;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
 `;
+
+const SliderButtonLeft = styled.button`
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: transparent;
+  color: #7f00ff;
+  border: 1px solid #7f00ff;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  z-index: 2;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: #7f00ff;
+    color: #fff;
+  }
+
+  @media (max-width: 768px) {
+    top: 135%;
+    left: 20%;
+  }
+
+  @media (max-width: 480px) {
+    top: 147%;
+    left: 9%;
+  }
+`;
+
+const SliderButtonRight = styled(SliderButtonLeft)`
+  left: auto;
+  right: 0; /* ensure it's on the right for larger screens */
+
+  @media (max-width: 768px) {
+    top: 135%;
+    right: 20%;
+  }
+
+  @media (max-width: 480px) {
+    top: 147%;
+    right: 9%;
+  }
+`;
+
 
 const Card = styled(motion.div)`
   background: #111;
@@ -65,7 +118,8 @@ const Card = styled(motion.div)`
   text-align: center;
   color: white;
   border: 1px solid #222;
-  box-shadow: ${(props) => (props.featured ? "0 0 10px rgba(127, 0, 255, 0.3)" : "none")};
+  box-shadow: ${(props) =>
+    props.featured ? "0 0 10px rgba(127, 0, 255, 0.3)" : "none"};
 `;
 
 const Price = styled.h3`
@@ -123,6 +177,11 @@ const Button = styled.button`
 const Packages = () => {
   const [billing, setBilling] = useState("monthly");
 
+  const [current, setCurrent] = useState(0);
+
+
+
+
   const plans = [
     {
       title: "Base",
@@ -133,10 +192,10 @@ const Packages = () => {
         "Own analytics platform",
         "Chat support",
         "Optimize hashtags",
-        "Unlimited users"
+        "Unlimited users",
       ],
       button: "Downgrade",
-      featured: false
+      featured: false,
     },
     {
       title: "Pro",
@@ -147,10 +206,10 @@ const Packages = () => {
         "Own analytics platform",
         "Chat support",
         "Optimize hashtags",
-        "Unlimited users"
+        "Unlimited users",
       ],
       button: "Upgrade",
-      featured: true
+      featured: true,
     },
     {
       title: "Enterprise",
@@ -161,12 +220,23 @@ const Packages = () => {
         "Own analytics platform",
         "Chat support",
         "Optimize hashtags",
-        "Unlimited users"
+        "Unlimited users",
       ],
       button: "Upgrade",
-      featured: false
-    }
+      featured: false,
+    },
   ];
+
+ const isMobile = window.innerWidth <= 768;
+const visiblePlans = isMobile ? [plans[current]] : plans;
+
+const handleNext = () => {
+  setCurrent((prev) => (prev + 1) % plans.length);
+};
+
+const handlePrev = () => {
+  setCurrent((prev) => (prev - 1 + plans.length) % plans.length);
+};
 
   return (
     <PageContainer>
@@ -177,19 +247,35 @@ const Packages = () => {
         <Subtitle>No contracts. No surprise fees.</Subtitle>
 
         <ToggleWrapper>
-          <ToggleButton active={billing === "monthly"} onClick={() => setBilling("monthly")}>Monthly</ToggleButton>
-          <ToggleButton active={billing === "yearly"} onClick={() => setBilling("yearly")}>Yearly</ToggleButton>
+          <ToggleButton
+            active={billing === "monthly"}
+            onClick={() => setBilling("monthly")}
+          >
+            Monthly
+          </ToggleButton>
+          <ToggleButton
+            active={billing === "yearly"}
+            onClick={() => setBilling("yearly")}
+          >
+            Yearly
+          </ToggleButton>
         </ToggleWrapper>
 
-        <Cards>
-          {plans.map((plan, i) => (
+        <Cards isMobile={isMobile}>
+          {visiblePlans.map((plan, i) => (
             <Card
               key={i}
               featured={plan.featured}
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -50 }}
             >
-              <Price>{plan.price}<span style={{ fontSize: "0.9rem" }}>/month</span></Price>
+              <Price>
+                {plan.price}
+                <span style={{ fontSize: "0.9rem" }}>/month</span>
+              </Price>
               <Plan featured={plan.featured}>{plan.title}</Plan>
               <Desc>{plan.description}</Desc>
               <FeatureList>
@@ -200,7 +286,19 @@ const Packages = () => {
               <Button outlined={!plan.featured}>{plan.button}</Button>
             </Card>
           ))}
+
+          
         </Cards>
+        {isMobile && (
+            <>
+              <SliderButtonLeft onClick={handlePrev}>
+                <FaChevronLeft />
+              </SliderButtonLeft>
+              <SliderButtonRight onClick={handleNext}>
+                <FaChevronRight />
+              </SliderButtonRight>
+            </>
+          )}
       </Wrapper>
       <Footer />
     </PageContainer>
