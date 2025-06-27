@@ -8,8 +8,7 @@ const dropdownContent = {
           { label: "Mobile App", href: "/product/mobile-app" },
           { label: "Multi Campus Support", href: "/product/multi-campus" },
           { label: "Student Smart IS", href: "/product/student-is" },
-          { label: "Custom Modules", href: "/product/erp-modules" },
-          { label: "Video Guide", href: "/product/integration" },
+          { label: "Customize Modules", href: "/product/erp-modules" },
           { label: "Why SeenaDSavior", href: "/product/why" },
           { label: "AI Advantage", href: "/product/ai-advantage" },
           { label: "FAQ", href: "/product/faq" }

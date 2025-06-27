@@ -6,7 +6,6 @@ import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
 import Topbar from "../Components/Header/Topbar";
 import { PageContainer } from "../App.styles";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const Wrapper = styled.div`
   padding: 6rem 2rem;
@@ -37,77 +36,64 @@ const ToggleWrapper = styled.div`
   display: inline-flex;
   padding: 0.4rem;
   margin-bottom: 3rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem;
+
+  @media (max-width: 480px) {
+    width: 100%;
+    flex-wrap: wrap;
+    padding: 0.6rem 1rem;
+    gap: 0.6rem;
+    background: #1a1a1a;
+    border-radius: 16px;
+  }
 `;
 
 const ToggleButton = styled.button`
   background: ${(props) => (props.active ? "#7f00ff" : "transparent")};
-  color: ${(props) => (props.active ? "#fff" : "#aaa")};
+  color: ${(props) => (props.active ? "#fff" : "#ccc")};
+  // border: 1px solid ${(props) => (props.active ? "#7f00ff" : "#333")};
   border: none;
-  border-radius: 30px;
+  border-radius: 24px;
   padding: 0.6rem 1.6rem;
+
   font-weight: 500;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   cursor: pointer;
-  transition: 0.3s;
-`;
-
-
-
-const Cards = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
-  position: relative;
-`;
-
-
-
-const SliderButtonLeft = styled.button`
-  position: absolute;
-  left: 0;
-  top: 0;
-  background: transparent;
-  color: #7f00ff;
-  border: 1px solid #7f00ff;
-  border-radius: 50%;
-  width: 2.5rem;
-  height: 2.5rem;
-  z-index: 2;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  transition: all 0.3s ease;
+  white-space: nowrap;
 
   &:hover {
     background: #7f00ff;
     color: #fff;
-  }
-
-  @media (max-width: 768px) {
-    top: 45%;
-    left: -25%;
+    border-color: #7f00ff;
   }
 
   @media (max-width: 480px) {
-    top: 45%;
-    left: -20%;
+    font-size: 0.8rem;
+    padding: 0.5rem 1.2rem;
+    flex: 1 1 auto;
+    min-width: 42%;
+    text-align: center;
   }
 `;
 
-const SliderButtonRight = styled(SliderButtonLeft)`
-  left: auto;
-  right: 0; 
 
-  @media (max-width: 768px) {
-    top: 45%;
-    right: -25%;
-  }
 
-  @media (max-width: 480px) {
-    top: 45%;
-    right: -20%;
-  }
+
+// const Cards = styled.div`
+//   display: flex;
+//   justify-content: center;
+// `;
+
+const Cards = styled.div`
+  position: relative;
+  width: 100%;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 
@@ -120,7 +106,7 @@ const Card = styled(motion.div)`
   color: white;
   border: 1px solid #222;
   box-shadow: ${(props) =>
-    props.featured ? "0 0 10px rgba(127, 0, 255, 0.3)" : "none"};
+    props.featured ? "0 0 5px rgba(127, 0, 255, 0.3)" : "none"};
 `;
 
 const Price = styled.h3`
@@ -176,68 +162,75 @@ const Button = styled.button`
 `;
 
 const Packages = () => {
-  const [billing, setBilling] = useState("monthly");
-
-  const [current, setCurrent] = useState(0);
-
-
-
+  const [selectedPlan, setSelectedPlan] = useState("simple");
 
   const plans = [
     {
-      title: "Base",
-      price: billing === "monthly" ? "$80" : "$800",
-      description: "For most businesses that want to optimize web queries.",
+      key: "simple",
+      title: "SDS Simple",
+      price: "$29",
+      description: "Essential tools for getting started.",
       features: [
-        "All limited links",
-        "Own analytics platform",
-        "Chat support",
-        "Optimize hashtags",
-        "Unlimited users",
+        "Basic analytics",
+        "Email support",
+        "1 user only",
+        "Limited features",
+        "Community access",
       ],
-      button: "Downgrade",
+      button: "Choose Simple",
       featured: false,
     },
     {
-      title: "Pro",
-      price: billing === "monthly" ? "$120" : "$1200",
-      description: "For most businesses that want to optimize web queries.",
+      key: "standard",
+      title: "SDS Standard",
+      price: "$59",
+      description: "Perfect for small teams and growing projects.",
       features: [
-        "All limited links",
-        "Own analytics platform",
-        "Chat support",
-        "Optimize hashtags",
-        "Unlimited users",
+        "Advanced analytics",
+        "Priority email support",
+        "5 team members",
+        "All simple features",
+        "Basic integrations",
       ],
-      button: "Upgrade",
+      button: "Choose Standard",
+      featured: false,
+    },
+    {
+      key: "pro",
+      title: "SDS Pro",
+      price: "$119",
+      description: "Powerful tools for power users and businesses.",
+      features: [
+        "Unlimited analytics",
+        "24/7 support",
+        "Unlimited team members",
+        "Custom integrations",
+        "Automation tools",
+      ],
+      button: "Choose Pro",
       featured: true,
     },
     {
-      title: "Enterprise",
-      price: billing === "monthly" ? "$260" : "$2600",
-      description: "For most businesses that want to optimize web queries.",
+      key: "platinum",
+      title: "SDS Platinum Pro",
+      price: "$299",
+      description: "All-inclusive plan with enterprise-level features.",
       features: [
-        "All limited links",
-        "Own analytics platform",
-        "Chat support",
-        "Optimize hashtags",
-        "Unlimited users",
+        "Dedicated support",
+        "Custom solutions",
+        "Unlimited everything",
+        "Onboarding specialist",
+        "Private infrastructure",
       ],
-      button: "Upgrade",
-      featured: false,
+      button: "Choose Platinum",
+      featured: true,
     },
   ];
 
- const isMobile = window.innerWidth <= 768;
-const visiblePlans = isMobile ? [plans[current]] : plans;
+  const screenWidth = typeof window !== "undefined" ? window.innerWidth : 0;
+  const isWideScreen = screenWidth > 1080;
 
-const handleNext = () => {
-  setCurrent((prev) => (prev + 1) % plans.length);
-};
-
-const handlePrev = () => {
-  setCurrent((prev) => (prev - 1 + plans.length) % plans.length);
-};
+  const selectedIndex = plans.findIndex((p) => p.key === selectedPlan);
 
   return (
     <PageContainer>
@@ -248,58 +241,85 @@ const handlePrev = () => {
         <Subtitle>No contracts. No surprise fees.</Subtitle>
 
         <ToggleWrapper>
-          <ToggleButton
-            active={billing === "monthly"}
-            onClick={() => setBilling("monthly")}
-          >
-            Monthly
-          </ToggleButton>
-          <ToggleButton
-            active={billing === "yearly"}
-            onClick={() => setBilling("yearly")}
-          >
-            Yearly
-          </ToggleButton>
+          {plans.map((plan) => (
+            <ToggleButton
+              key={plan.key}
+              active={selectedPlan === plan.key}
+              onClick={() => setSelectedPlan(plan.key)}
+            >
+              {plan.title}
+            </ToggleButton>
+          ))}
         </ToggleWrapper>
 
-        <Cards isMobile={isMobile}>
-          {visiblePlans.map((plan, i) => (
-            <Card
-              key={i}
-              featured={plan.featured}
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-            >
-              <Price>
-                {plan.price}
-                <span style={{ fontSize: "0.9rem" }}>/month</span>
-              </Price>
-              <Plan featured={plan.featured}>{plan.title}</Plan>
-              <Desc>{plan.description}</Desc>
-              <FeatureList>
-                {plan.features.map((item, idx) => (
-                  <li key={idx}>{item}</li>
-                ))}
-              </FeatureList>
-              <Button outlined={!plan.featured}>{plan.button}</Button>
-            </Card>
-          ))}
+        <Cards style={{ perspective: "1200px" }}>
+          {plans.map((plan, index) => {
+            // Hide all except selected card on mobile
+            if (!isWideScreen && plan.key !== selectedPlan) return null;
 
-          {isMobile && (
-            <>
-              <SliderButtonLeft onClick={handlePrev}>
-                <FaChevronLeft />
-              </SliderButtonLeft>
-              <SliderButtonRight onClick={handleNext}>
-                <FaChevronRight />
-              </SliderButtonRight>
-            </>
-          )}
+            let distance = index - selectedIndex;
+
+            // Card animation position logic
+            let styleProps = {
+              scale: 0.85,
+              opacity: 0.3,
+              zIndex: 0,
+              x: distance * 220,
+            };
+
+            if (distance === 0) {
+              styleProps = {
+                scale: 1,
+                opacity: 1,
+                zIndex: 2,
+                x: 0,
+              };
+            } else if (Math.abs(distance) === 1) {
+              styleProps.opacity = 0.6;
+              styleProps.zIndex = 1;
+              styleProps.scale = 0.9;
+            } else {
+              return null; // Don't show cards beyond ±1 on widescreen
+            }
+
+            return (
+              <Card
+                key={plan.key}
+                featured={distance === 0 && plan.featured}
+                initial={{ opacity: 0, x: 100 }}
+                animate={{
+                  x: styleProps.x,
+                  opacity: styleProps.opacity,
+                  scale: styleProps.scale,
+                  zIndex: styleProps.zIndex,
+                }}
+                transition={{ duration: 0.5 }}
+                style={{
+                  position: "absolute",
+                  transformStyle: "preserve-3d",
+                  pointerEvents: distance === 0 ? "auto" : "none",
+                  boxShadow:
+                    distance === 0
+                      ? "0 0 25px rgba(127, 0, 255, 0.3)"
+                      : "none",
+                }}
+              >
+                <Price>
+                  {plan.price}
+                  <span style={{ fontSize: "0.9rem" }}>/month</span>
+                </Price>
+                <Plan featured={plan.featured}>{plan.title}</Plan>
+                <Desc>{plan.description}</Desc>
+                <FeatureList>
+                  {plan.features.map((item, idx) => (
+                    <li key={idx}>{item}</li>
+                  ))}
+                </FeatureList>
+                <Button outlined={!plan.featured}>{plan.button}</Button>
+              </Card>
+            );
+          })}
         </Cards>
-        
       </Wrapper>
       <Footer />
     </PageContainer>
