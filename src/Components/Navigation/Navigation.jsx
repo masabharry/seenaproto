@@ -13,6 +13,7 @@ const navItems = [
   { name: "SDS Community", type: "Community", dropdown: true },
   { name: "SDS Packages", href: "/packages", dropdown: false },
   { name: "Video Guide", href: "/video-guide", dropdown: false },
+  { name: "AI Advantage", href: "/ai-advantage", dropdown: false },
   { name: "About Us", type: "About", dropdown: true },
   { name: "Contact Us", href: "/contact-us", dropdown: false },
 ];

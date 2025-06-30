@@ -9,7 +9,6 @@ const dropdownContent = {
           { label: "Multi Campus Support", href: "/product/multi-campus" },
           { label: "Student Smart IS", href: "/product/student-is" },
           { label: "Customisable Modules", href: "/product/erp-modules" },
-          { label: "AI Advantage", href: "/product/ai-advantage" },
           { label: "FAQ", href: "/product/faq" },
         ],
       },
