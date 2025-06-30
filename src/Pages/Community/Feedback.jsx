@@ -216,11 +216,11 @@ const Feedback = () => {
             <Card key={i}>
               <CardTitle>{item.title}</CardTitle>
               <CardDetail>{item.description}</CardDetail>
-            </Card>
+            </Card> 
           ))}
         </CardGrid>
       </Section>
-
+     // deleted for now
       {/* <Section>
         <div
           style={{
