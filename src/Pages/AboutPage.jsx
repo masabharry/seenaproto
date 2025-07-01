@@ -1,18 +1,43 @@
-// pages/AboutPage.jsx
-import React from 'react';
-import Header from '../Components/Header/Header';
-import Footer from '../Components/Footer/Footer';
-import { PageContainer } from '../App.styles';
+import React from "react";
+import { useLocation } from "react-router-dom";
+
+// Import all about pages
+import Vision from "./About/Vision";
+import FoundingStory from "./About/FoundingStory";
+import Team from "./About/Team";
+import Pilots from "./About/Pilots";
+import News from "./About/News";
+import Join from "./About/Join";
 
 const AboutPage = () => {
-  return (
-    <PageContainer>
-      <Header />
-      <h1>About Us</h1>
-      {/* Add about page content here */}
-      <Footer />
-    </PageContainer>
-  );
+  const { pathname } = useLocation();
+  const subpage = pathname.split("/about/")[1];
+
+  const renderComponent = () => {
+    switch (subpage) {
+      case "vision":
+        return <Vision />;
+      case "founding-story":
+        return <FoundingStory />;
+      case "team":
+        return <Team />;
+      case "pilots":
+        return <Pilots />;
+      case "news":
+        return <News />;
+      case "join":
+        return <Join />;
+      default:
+        return (
+          <div style={{ color: "white", padding: "5rem", textAlign: "center" }}>
+            <h1>Page Not Found</h1>
+            <p>The page you’re looking for doesn’t exist in the About section.</p>
+          </div>
+        );
+    }
+  };
+
+  return <>{renderComponent()}</>;
 };
 
 export default AboutPage;

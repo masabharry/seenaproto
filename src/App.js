@@ -16,6 +16,14 @@ import PageWrapper from './Components/PageWrapper';
 import Webinars from './Pages/Community/Webinars';
 import Feedback from './Pages/Community/Feedback';
 import Help from './Pages/Community/Help';
+import ActorDetail from './Pages/ActorDetail';
+import Vision from './Pages/About/Vision';
+import FoundingStory from './Pages/About/FoundingStory';
+import Team from './Pages/About/Team';
+import Pilots from './Pages/About/Pilots';
+import News from './Pages/About/News';
+import Join from './Pages/About/Join';
+import AboutPage from './Pages/AboutPage';
 
 const AppContent = () => {
   const location = useLocation();
@@ -29,12 +37,16 @@ const AppContent = () => {
           <Route path="/login" element={<PageWrapper><Login /></PageWrapper>} />
           <Route path="/packages" element={<PageWrapper><PackagePage /></PageWrapper>} />
           <Route path="/community/:type" element={<PageWrapper><CommunityDetail /></PageWrapper>} />
+          <Route path="/actors/:type" element={<PageWrapper><ActorDetail /></PageWrapper>} />
+          <Route path="/about/:subpage" element={<AboutPage />} />
           <Route path="/product/feature-tour" element={<PageWrapper><FeatureTour /></PageWrapper>} />
           <Route path="/product/mobile-app" element={<PageWrapper><MobileApp /></PageWrapper>} />
           <Route path="/contact-us" element={<PageWrapper><Contact /></PageWrapper>} />
           <Route path="/community/webinars" element={<PageWrapper><Webinars /></PageWrapper>} />
           <Route path="/community/feedback" element={<PageWrapper><Feedback /></PageWrapper>} />
           <Route path="/community/help" element={<PageWrapper><Help /></PageWrapper>} />
+         
+
         </Routes>
       </AnimatePresence>
     </>

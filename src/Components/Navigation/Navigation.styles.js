@@ -43,7 +43,7 @@ export const NavItem = styled.li`
 export const NavLink = styled.a`
   text-decoration: none;
   color: #fff;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 500;
   padding: 0.5rem 0;
   transition: color 0.3s;
