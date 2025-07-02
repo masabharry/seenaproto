@@ -24,6 +24,12 @@ import Pilots from './Pages/About/Pilots';
 import News from './Pages/About/News';
 import Join from './Pages/About/Join';
 import AboutPage from './Pages/AboutPage';
+import MultiCampus from './Pages/Products/MultiCampus';
+import StudentIS from './Pages/Products/StudentIS';
+import ERPModules from './Pages/Products/ERPModules';
+import FAQ from './Pages/Products/FAQ';
+import ProductPage from './Pages/ProductPage';
+import AIAdvantage from './Pages/AIAdvantage';
 
 const AppContent = () => {
   const location = useLocation();
@@ -39,9 +45,9 @@ const AppContent = () => {
           <Route path="/community/:type" element={<PageWrapper><CommunityDetail /></PageWrapper>} />
           <Route path="/actors/:type" element={<PageWrapper><ActorDetail /></PageWrapper>} />
           <Route path="/about/:subpage" element={<AboutPage />} />
-          <Route path="/product/feature-tour" element={<PageWrapper><FeatureTour /></PageWrapper>} />
-          <Route path="/product/mobile-app" element={<PageWrapper><MobileApp /></PageWrapper>} />
+          <Route path="/product/:subpage" element={<ProductPage />} />
           <Route path="/contact-us" element={<PageWrapper><Contact /></PageWrapper>} />
+          <Route path="/ai-advantage" element={<PageWrapper><AIAdvantage /></PageWrapper>} />
           <Route path="/community/webinars" element={<PageWrapper><Webinars /></PageWrapper>} />
           <Route path="/community/feedback" element={<PageWrapper><Feedback /></PageWrapper>} />
           <Route path="/community/help" element={<PageWrapper><Help /></PageWrapper>} />

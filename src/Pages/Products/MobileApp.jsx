@@ -210,10 +210,10 @@ export default function Mobile() {
           {features.map((f, i) => (
             <FeatureCard
               key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.2 }}
+              // initial={{ opacity: 0, y: 20 }}
+              // whileInView={{ opacity: 1, y: 0 }}
+              // viewport={{ once: true }}
+              // transition={{ duration: 0.4, delay: i * 0.2 }}
             >
               <div className="header">
                 {f.icon}
