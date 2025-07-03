@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { FaSearch, FaBars } from "react-icons/fa";
 import { useAnimation, motion } from "framer-motion";
 import { useScroll } from "framer-motion";
@@ -19,10 +19,12 @@ const Header = () => {
   const controls = useAnimation();
   const { scrollY } = useScroll();
 
+  const lastMouseMoveTimeRef = useRef(Date.now());
+  const scrollTimeoutRef = useRef(null);
+  
+
   useEffect(() => {
-    setIsTouchDevice(
-      "ontouchstart" in window || navigator.maxTouchPoints > 0
-    );
+    setIsTouchDevice("ontouchstart" in window || navigator.maxTouchPoints > 0);
   }, []);
 
   useEffect(() => {
@@ -60,27 +62,56 @@ const Header = () => {
     }
   };
 
-    // 👇 Close dropdown on scroll if mouse is not over nav or dropdown
   useEffect(() => {
-    const handleScroll = () => {
-      const isHoveringDropdown = document.querySelector(":hover[data-dropdown]");
-      const isHoveringTrigger = document.querySelector(":hover[data-trigger]");
+    const handleMouseMove = () => {
+      lastMouseMoveTimeRef.current = Date.now();
+    };
 
-      if (!isHoveringDropdown && !isHoveringTrigger) {
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  // 👇 Close dropdown on scroll if mouse is not over nav or dropdown
+  useEffect(() => {
+    const SCROLL_MOUSE_INACTIVE_TIMEOUT = 200; // ms
+
+    const handleForcedClose = () => {
+      const now = Date.now();
+      const timeSinceLastMouseMove = now - lastMouseMoveTimeRef.current;
+
+      const isMouseInactive =
+        timeSinceLastMouseMove > SCROLL_MOUSE_INACTIVE_TIMEOUT;
+
+      if (isMouseInactive) {
         setActiveDropdown(null);
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => {
+      clearTimeout(scrollTimeoutRef.current);
+      scrollTimeoutRef.current = setTimeout(handleForcedClose, 100); // small delay after scroll
+    };
+
+    const handleKey = (e) => {
+      if (["ArrowUp", "ArrowDown", "PageUp", "PageDown", " "].includes(e.key)) {
+        handleForcedClose();
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("keydown", handleKey);
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("keydown", handleKey);
     };
   }, []);
-
 
   return (
     <HeaderContainer
       as={motion.header}
+      onMouseLeave={() => {
+        if (!isTouchDevice) setActiveDropdown(null);
+      }}
       animate={controls}
       initial={{ background: "transparent" }}
     >
